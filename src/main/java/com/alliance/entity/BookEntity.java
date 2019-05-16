@@ -2,22 +2,37 @@ package com.alliance.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 @Entity
-@Table(name = "book", schema = "book_db", catalog = "")
+@Table(name = "book", schema = "springboot", catalog = "")
 public class BookEntity {
 
-	private int BookId;
-	private String BookTitle, BookAuthor, BookVersion, BookStatus; 
-	
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "BookId", nullable = false, length = 11)
+	private int BookId;
+	
+	@Column(name = "BookTitle", nullable = false, length = 150)
+	private String BookTitle;
+	
+	@Column(name = "BookAuthor", nullable = false, length = 100)
+	private String BookAuthor;
+	
+	@Column(name = "BookVersion", nullable = false, length = 100)
+	private String BookVersion;
+	
+	@Column(name = "BookStatus", nullable = true, length = 5)
+	private String BookStatus; 
+	
+	
+	
 	public int getBookId() {
 		return BookId;
 	}
@@ -25,7 +40,7 @@ public class BookEntity {
 		BookId = bookId;
 	}
 	
-	@Column(name = "BookTitle", nullable = false, length = 150)
+	
 	public String getBookTitle() {
 		return BookTitle;
 	}
@@ -33,7 +48,7 @@ public class BookEntity {
 		BookTitle = bookTitle;
 	}
 	
-	@Column(name = "BookAuthor", nullable = false, length = 100)
+	
 	public String getBookAuthor() {
 		return BookAuthor;
 	}
@@ -41,7 +56,7 @@ public class BookEntity {
 		BookAuthor = bookAuthor;
 	}
 	
-	@Column(name = "BookVersion", nullable = true, length = 5)
+	
 	public String getBookVersion() {
 		return BookVersion;
 	}

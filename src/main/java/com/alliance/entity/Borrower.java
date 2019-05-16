@@ -1,22 +1,37 @@
 package com.alliance.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 
+@Table(name = "borrower", schema = "springboot", catalog = "")
 public class Borrower {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name = "BorrowerId", nullable = false)
 	private int BorrowerId;
 	
-	private String BorrowerFname, BorrowerLname, BorrowerStatus;
+	@Column(name = "BorrowerFname", nullable = false, length = 50)
+	private String BorrowerFname;
 	
-	@Column(name = "BorrowerId", nullable = false)
+	@Column(name = "BorrowerLname", nullable = false, length = 50)
+	private String BorrowerLname;
+	
+	@Column(name = "BorrowerStatus", nullable = false, length = 2)
+	private String BorrowerStatus;
+	
+	
 	public int getBorrowerId() {
 		return BorrowerId;
 	}
@@ -25,7 +40,7 @@ public class Borrower {
 		BorrowerId = borrowerId;
 	}
 	
-	@Column(name = "BorrowerFname", nullable = false, length = 50)
+	
 	public String getBorrowerFname() {
 		return BorrowerFname;
 	}
@@ -34,7 +49,7 @@ public class Borrower {
 		BorrowerFname = borrowerFname;
 	}
 	
-	@Column(name = "BorrowerLname", nullable = false, length = 50)
+	
 	public String getBorrowerLname() {
 		return BorrowerLname;
 	}
@@ -43,7 +58,7 @@ public class Borrower {
 		BorrowerLname = borrowerLname;
 	}
 	
-	@Column(name = "BorrowerStatus", nullable = false, length = 2)
+	
 	public String getBorrowerStatus() {
 		return BorrowerStatus;
 	}
